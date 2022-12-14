@@ -92,7 +92,6 @@ void action() {
     if (portal.form("/wifi")) {
       portal.copyStr("ssid", cfg.ssid);
       portal.copyStr("pass", cfg.pass);
-      cfg.WiFimode = portal.getInt("wfmode");
       portal.stop();
       EEPROM.put(1, cfg);
       EEPROM.commit();

@@ -43,8 +43,6 @@ void build() {
   M_NAV_BLOCK(
     M_BLOCK(
       GP.FORM_BEGIN("/wifi");
-      GP.SELECT("wfmode", "AP,Local", cfg.WiFimode);
-      GP.BREAK();
       GP.TEXT("ssid", "SSID", cfg.ssid);
       GP.BREAK();
       GP.PASS("pass", "Password", cfg.pass);

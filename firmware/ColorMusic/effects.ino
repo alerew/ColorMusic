@@ -1,5 +1,9 @@
 void effectsRountine() {
   if (!cfg.state) return;
+  if(!connect) {
+    fader(CRGB::Red);
+    return;
+  }
   analyzer.tick();
   yield();
   if (!effTmr.isReady()) return;
@@ -133,4 +137,16 @@ void blink16(CRGB color) {
 }
 byte getMaxNoise(uint16_t x, uint16_t y) {
   return constrain(map(inoise8(x, y), 50, 200, 0, 255), 0, 255);
+}
+void fader(CRGB color) {
+  static uint32_t tmr;
+  static int val = 0;
+  static bool dir = true;
+  if (millis() - tmr >= 20) {
+    tmr = millis();
+    val += dir ? 3 : -3;
+    val = constrain(val, 5, 120);
+    if (val >= 120 || val <= 5) dir = !dir;
+    FastLED.showColor(color, val);
+  }
 }

@@ -23,12 +23,12 @@ struct Config {
   byte presetAmount = 5;  // количество режимов
   byte change = 1;        // автосмена режимов
   byte period = 60;       // период автосмены
-  byte WiFimode = 0;      // 0 AP, 1 local
-  char ssid[32] = "Color Music";  // логин wifi
+  char ssid[32] = "";  // логин wifi
   char pass[32] = "";     // пароль wifi
 };
 
 byte reload = 0;    // перезагрузка страницы
+bool connect = false;
 
 byte steps[3] = {151, 129, 1};
 

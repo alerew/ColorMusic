@@ -3,7 +3,7 @@
 void buttonInit() {
 #if (USE_BTN == 1)
   btn.setLevel(0);
-  //if (checkButton()) EEreset();
+  if (checkButton()) EEreset();
 #endif
 }
 

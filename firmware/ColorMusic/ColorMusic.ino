@@ -3,7 +3,7 @@
 #define BTN_PIN 4         // кнопка на D2
 #define STRIP_PIN 2       // D4 пин подключения ленты
 #define MAX_LEDS 300      // максимальное количество светодиодов
-#define MAX_PRESETS 15    // максимальное количество режимов
+#define MAX_PRESETS 20    // максимальное количество режимов
 
 // ------------ WiFi AP ------------
 const char AP_NameChar[] = "Color Music";
@@ -46,7 +46,7 @@ void setup() {
 void loop() {
   WiFiRoutine();      // обновляем страницу
   yield();
-  tryReconnect();     // переподключаемся если wifi отключился
+  tryReconnect();     // переподключаемся если wifi не подключился
   yield();
   button();           // проверяем кнопку
   yield();

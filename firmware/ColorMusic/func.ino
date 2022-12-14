@@ -3,7 +3,7 @@ void analogInit() {
   analyzer.setTrsh(50);           // порог тишины
   analyzer.setVolMin(10);         // мин. громкость 10
   analyzer.setVolMax(255);        // макс. громкость 255
-  analyzer.setDt(1000);            // время между опросами АЦП
+  analyzer.setDt(700);            // время между опросами АЦП
   analyzer.setPeriod(5000);       // период между выборками
   analyzer.setPulseTrsh(200);     // верхний порог пульса
   analyzer.setPulseMin(80);       // нижний порог пульса
