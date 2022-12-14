@@ -17,6 +17,7 @@
 - Лес
 
 ### Управление происходит через веб-страницу
+Веб-интерфейс позволяет переключать и настраивать режимы, настраивать автосмену режимов, вводить количество светодиодов, устанавливать лимит по току, изменять яркость и выключать светомузыку. 
 
 ![WEBPAGE](https://github.com/alerew/ColorMusic/blob/main/webpage/webpage%20main.jpg)
 ![WEBPAGE](https://github.com/alerew/ColorMusic/blob/main/webpage/webpage%20settings.jpg)
