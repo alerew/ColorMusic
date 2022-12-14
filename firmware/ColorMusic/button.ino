@@ -43,9 +43,6 @@ void button() {
       case 3:
         changeMode(-1);   // предыдущий режим
         break;
-      case 4:
-        tryReconnect();
-        break;
     }
     btnClicks = 0;
   }
