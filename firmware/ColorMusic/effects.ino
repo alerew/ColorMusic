@@ -88,7 +88,7 @@ void effectsRountine() {
     changeMode(1);
   }
 }
-byte getScale(int num) {
+float getScale(int num) {
   if (CUR_PRES.scale == 0) return (float)255 * num / cfg.numLeds;
   return (float)CUR_PRES.scale * num / 5;
 }
