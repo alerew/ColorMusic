@@ -1,6 +1,6 @@
 void effectsRountine() {
   if (!cfg.state) return;
-  if(!connect) {
+  if (!connect) {
     fader(CRGB::Red);
     return;
   }
@@ -71,12 +71,13 @@ void effectsRountine() {
       break;
     case 3: // =================================== ГРАДИЕНТ ===================================
       {
+        static uint16_t counter = 0;
         for (int i = 0; i < cfg.numLeds; i++) {
-          if (CUR_PRES.flag == 1)leds[i] = ColorFromPalette(CUR_PAL, getMaxNoise(getScale(i), CUR_PRES.color), 255, LINEARBLEND);   // перлин
-          else leds[i] = ColorFromPalette(CUR_PAL, getScale(i) + CUR_PRES.color, 255, LINEARBLEND);   // градиент
+          if (CUR_PRES.flag == 1)leds[i] = ColorFromPalette(CUR_PAL, getMaxNoise(getScale(i), counter), 255, LINEARBLEND);   // перлин
+          else leds[i] = ColorFromPalette(CUR_PAL, getScale(i) + counter, 255, LINEARBLEND);   // градиент
         }
         if (rainbowTmr.isReady()) {
-          CUR_PRES.color += CUR_PRES.speed / 5;
+          counter += CUR_PRES.speed / 5;
         }
       }
       break;

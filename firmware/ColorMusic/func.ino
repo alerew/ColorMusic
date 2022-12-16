@@ -31,7 +31,7 @@ void setMode(byte mode) {
 }
 void setState(bool state) {
   if (state == false) {
-    turnoffTmr.setInterval(700);
+    turnoffTmr.setInterval(1000);
     turnoffTmr.restart();
   }
   else {
