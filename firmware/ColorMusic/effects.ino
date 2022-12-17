@@ -8,15 +8,6 @@ void effectsRountine() {
   yield();
   if (!effTmr.isReady()) return;
 
-  byte thisBright = cfg.bright;
-  if (turnoffTmr.running()) _fade8(thisBright, 255 - turnoffTmr.getLength8());    // изменяем яркость при выключении
-  if (turnoffTmr.isReady()) {
-    turnoffTmr.stop();
-    setPower(0);      // выключаем
-    return;
-  }
-  FastLED.setBrightness(thisBright);
-
   byte vol = analyzer.getVol();
   yield();
 
@@ -44,12 +35,12 @@ void effectsRountine() {
 
         byte count = 0;
         for (int i = (MAX_CH - 1); i > ((MAX_CH - 1) - map(analyzer.getVol(), 0, 255, 0, MAX_CH)); i--) {
-          leds[i] = ColorFromPalette(CUR_PAL, getScale(i) * 2 - hue);   // заливка по палитре
+          leds[i] = ColorFromPalette(CUR_PAL, getScale(count) * 2 - hue);   // заливка по палитре
           count++;
         }
         count = 0;
         for (int i = (MAX_CH); i < (MAX_CH + map(analyzer.getVol(), 0, 255, 0, MAX_CH)); i++ ) {
-          leds[i] = ColorFromPalette(CUR_PAL, getScale(i)) * 2 - hue);   // заливка по палитре
+          leds[i] = ColorFromPalette(CUR_PAL, getScale(count) * 2 - hue);   // заливка по палитре
           count++;
         }
       }
@@ -84,10 +75,6 @@ void effectsRountine() {
   }
   yield();
   FastLED.show();
-
-  if (changeTmr.isReady()) {
-    changeMode(1);
-  }
 }
 float getScale(int num) {
   if (CUR_PRES.scale == 0) return (float)255 * num / cfg.numLeds;
@@ -128,7 +115,7 @@ void _fade8local(byte& r, byte& g, byte& b, byte br) {
 
 void blink16(CRGB color) {
   for (byte i = 0; i < 3; i++) {
-    fill_solid(leds, cfg.numLeds, color);
+    fill_solid(leds, MAX_LEDS, color);
     FastLED.show();
     delay(300);
     FastLED.clear();

@@ -21,6 +21,7 @@ void action() {
     if (portal.click("eff")) {
       CUR_PRES.effect = portal.getInt("eff");
       if (CUR_PRES.effect == 0 || CUR_PRES.effect == 2) CUR_PRES.pallete = constrain(CUR_PRES.pallete, 0, 2);
+      if (CUR_PRES.effect == 1) CUR_PRES.scale = 0;
       reload = 1;
       EE_updatePreset();
     }
@@ -54,7 +55,6 @@ void action() {
     if (portal.click("am")) {
       cfg.presetAmount = portal.getInt("am");
       MAX_CH = cfg.numLeds / 2;
-      indexL = (float)255 / MAX_CH;
       EE_updateCfg();
     }
     if (portal.click("lm")) {
@@ -76,7 +76,7 @@ void action() {
 
   // =================================== UPDATE ===================================
   if (portal.update()) {
-    if (portal.update("st")) portal.answer(cfg.state && !turnoffTmr.running());
+    if (portal.update("st")) portal.answer(cfg.state && dir);
     if (portal.update("br")) portal.answer(cfg.bright);
     if (portal.update("mode")) portal.answer(cfg.curPreset + 1);
     if (portal.update("eff")) portal.answer(CUR_PRES.effect);

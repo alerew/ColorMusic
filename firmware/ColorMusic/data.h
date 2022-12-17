@@ -1,9 +1,8 @@
 #define CUR_PRES preset[cfg.curPreset]    // текущий режим
 #define CUR_PAL paletteArr[CUR_PRES.pallete]    // текущая палитра
 
-// служебные переменные для эффектов
+// служебная переменная для эффектов
 int MAX_CH = 50;    // cfg.numLeds / 2
-float indexL = (float)255 / MAX_CH;
 
 struct Preset {
   byte effect = 0;    // тип эфекта

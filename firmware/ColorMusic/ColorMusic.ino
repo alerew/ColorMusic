@@ -50,6 +50,8 @@ void loop() {
   yield();
   button();           // проверяем кнопку
   yield();
+  presetManager();
+  yield();
   effectsRountine();  // эффекты
   yield();
   checkEEupdate();    // проверяем eeprom

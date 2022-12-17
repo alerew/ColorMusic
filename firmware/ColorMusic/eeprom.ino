@@ -18,8 +18,7 @@ void EE_Init() {
   if (cfg.change) changeTmr.restart();
   else changeTmr.stop();      // отключаем автосмену
   
-  MAX_CH = cfg.numLeds / 2;   // служебные переменные для эфектов
-  indexL = (float)255 / MAX_CH;
+  MAX_CH = cfg.numLeds / 2;   // служебная переменная для эффектов
 }
 
 void EE_updateCfg() {

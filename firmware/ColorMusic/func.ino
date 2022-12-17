@@ -29,12 +29,31 @@ void setMode(byte mode) {
   reload = 1;
   EE_updateCfg();
 }
+bool dir = true;
+void presetManager(){
+  if (changeTmr.isReady()) {
+    changeMode(1);
+  }
+  
+  byte thisBright = cfg.bright;
+  if (turnoffTmr.running()) _fade8(thisBright, dir ? turnoffTmr.getLength8() : 255 - turnoffTmr.getLength8());    // изменяем яркость при включении/выключении
+  if (turnoffTmr.isReady()) {
+    turnoffTmr.stop();
+    if(!dir) setPower(0);      // выключаем
+    return;
+  }
+  FastLED.setBrightness(thisBright);
+}
 void setState(bool state) {
   if (state == false) {
+    dir = false;
     turnoffTmr.setInterval(1000);
     turnoffTmr.restart();
   }
   else {
+    dir = true;
+    turnoffTmr.setInterval(1000);
+    turnoffTmr.restart();
     setPower(1);
   }
 }
