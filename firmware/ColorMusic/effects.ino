@@ -44,12 +44,12 @@ void effectsRountine() {
 
         byte count = 0;
         for (int i = (MAX_CH - 1); i > ((MAX_CH - 1) - map(analyzer.getVol(), 0, 255, 0, MAX_CH)); i--) {
-          leds[i] = ColorFromPalette(CUR_PAL, (count * indexL) / 2 - hue);   // заливка по палитре
+          leds[i] = ColorFromPalette(CUR_PAL, getScale(i) * 2 - hue);   // заливка по палитре
           count++;
         }
         count = 0;
         for (int i = (MAX_CH); i < (MAX_CH + map(analyzer.getVol(), 0, 255, 0, MAX_CH)); i++ ) {
-          leds[i] = ColorFromPalette(CUR_PAL, (count * indexL) / 2 - hue);   // заливка по палитре
+          leds[i] = ColorFromPalette(CUR_PAL, getScale(i)) * 2 - hue);   // заливка по палитре
           count++;
         }
       }
