@@ -23,7 +23,7 @@ struct Config {
   byte presetAmount = 5;  // количество режимов
   byte change = 1;        // автосмена режимов
   byte period = 60;       // период автосмены
-  char ssid[32] = "";  // логин wifi
+  char ssid[32] = "";     // логин wifi
   char pass[32] = "";     // пароль wifi
 };
 
