@@ -21,25 +21,27 @@ void changeMode(int8_t dir) {
   cfg.curPreset += dir;   // меняем режим
   if (cfg.curPreset > cfg.presetAmount - 1) cfg.curPreset = 0;
   if (cfg.curPreset < 0) cfg.curPreset = cfg.presetAmount - 1;
+  changeTmr.reset();
   reload = 1;       // обновляем страницу
   EE_updateCfg();
 }
 void setMode(byte mode) {
   cfg.curPreset = constrain(mode, 0, cfg.presetAmount - 1);
+  changeTmr.reset();
   reload = 1;
   EE_updateCfg();
 }
 bool dir = true;
-void presetManager(){
+void presetManager() {
   if (changeTmr.isReady()) {
     changeMode(1);
   }
-  
+
   byte thisBright = cfg.bright;
   if (turnoffTmr.running()) _fade8(thisBright, dir ? turnoffTmr.getLength8() : 255 - turnoffTmr.getLength8());    // изменяем яркость при включении/выключении
   if (turnoffTmr.isReady()) {
     turnoffTmr.stop();
-    if(!dir) setPower(0);      // выключаем
+    if (!dir) setPower(0);     // выключаем
     return;
   }
   FastLED.setBrightness(thisBright);

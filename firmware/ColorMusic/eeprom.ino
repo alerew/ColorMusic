@@ -1,4 +1,4 @@
-#define EE_KEY 54
+#define EE_KEY 74
 bool EEcfgFlag = false;
 bool EEpresetFlag = false;
 

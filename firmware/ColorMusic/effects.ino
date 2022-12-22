@@ -38,12 +38,12 @@ void effectsRountine() {
         if (CUR_PRES.speed == 0) hue = 0;
 
         byte count = 0;
-        for (int i = (MAX_CH - 1); i > ((MAX_CH - 1) - map(analyzer.getVol(), 0, 255, 0, MAX_CH)); i--) {
+        for (int i = (MAX_CH - 1); i > ((MAX_CH - 1) - map(vol, 0, 255, 0, MAX_CH)); i--) {
           leds[i] = ColorFromPalette(CUR_PAL, getScale(count) * 2 - hue);   // заливка по палитре
           count++;
         }
         count = 0;
-        for (int i = (MAX_CH); i < (MAX_CH + map(analyzer.getVol(), 0, 255, 0, MAX_CH)); i++ ) {
+        for (int i = (MAX_CH); i < (MAX_CH + map(vol, 0, 255, 0, MAX_CH)); i++ ) {
           leds[i] = ColorFromPalette(CUR_PAL, getScale(count) * 2 - hue);   // заливка по палитре
           count++;
         }
@@ -90,7 +90,7 @@ void effectsRountine() {
   FastLED.show();
 }
 float getScale(int num) {
-  if (CUR_PRES.scale == 0) return (float)255 * num / cfg.numLeds;
+  if (CUR_PRES.scale == 0) return (float)255 * num / (cfg.numLeds - 1);
   return (float)CUR_PRES.scale * num / 5;
 }
 CRGB setWheel8(uint8_t color, int br) {

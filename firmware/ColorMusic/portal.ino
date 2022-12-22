@@ -55,7 +55,6 @@ void action() {
     }
     if (portal.click("am")) {
       cfg.presetAmount = portal.getInt("am");
-      MAX_CH = cfg.numLeds / 2;
       EE_updateCfg();
     }
     if (portal.click("lm")) {
@@ -64,6 +63,7 @@ void action() {
     }
     if (portal.click("leds")) {
       cfg.numLeds = constrain(portal.getInt("leds"), 10, MAX_LEDS);
+      MAX_CH = cfg.numLeds / 2;
       EE_updateCfg();
     }
     if (portal.click("rst")) {
