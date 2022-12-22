@@ -37,8 +37,8 @@ Config cfg;
 void setup() {
   Serial.begin(9600);
   EE_Init();      // старт eeprom
-  buttonInit();   // старт кнопки
   stripInit();    // старт ленты
+  buttonInit();   // старт кнопки
   WiFiInit();     // старт wifi
   analogInit();   // старт микрофона
 }
@@ -50,7 +50,7 @@ void loop() {
   yield();
   button();           // проверяем кнопку
   yield();
-  presetManager();
+  presetManager();    // крутим эффекты
   yield();
   effectsRountine();  // эффекты
   yield();

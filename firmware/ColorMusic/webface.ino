@@ -111,6 +111,11 @@ void settingModeBuild() {
     GP.BREAK();
     GP.SLIDER("scl", CUR_PRES.scale, 0, 255);
   }
+  else if(CUR_PRES.effect == 4){
+    GP.LABEL("Цвет");
+    GP.BREAK();
+    GP.SLIDER("pal", CUR_PRES.pallete, 0, 255);
+  }
   else {
     GP.LABEL("Шаг изменения цвета");
     GP.BREAK();

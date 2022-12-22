@@ -20,7 +20,8 @@ void action() {
     }
     if (portal.click("eff")) {
       CUR_PRES.effect = portal.getInt("eff");
-      if (CUR_PRES.effect == 0 || CUR_PRES.effect == 2) CUR_PRES.pallete = constrain(CUR_PRES.pallete, 0, 2);
+      if (CUR_PRES.effect == 0 || CUR_PRES.effect == 2) CUR_PRES.pallete = constrain(CUR_PRES.pallete, 0, 3);
+      else if (CUR_PRES.effect == 1 || CUR_PRES.effect == 3) CUR_PRES.pallete = constrain(CUR_PRES.pallete, 0, MAX_PALETTES - 1);
       if (CUR_PRES.effect == 1) CUR_PRES.scale = 0;
       reload = 1;
       EE_updatePreset();

@@ -12,13 +12,17 @@ void effectsRountine() {
   yield();
 
   // =================================================== ЭФФЕКТЫ ===================================================
+  static byte color = 0;
   switch (CUR_PRES.effect) {
     case 0: // =================================== РЕЗКАЯ СМЕНА ЦВЕТА ===================================
       {
-        if (analyzer.getPulse() && CUR_PRES.pallete != 2) CUR_PRES.color += steps[CUR_PRES.pallete];   // скачок громкости
-        else if (CUR_PRES.pallete == 2) CUR_PRES.color += steps[CUR_PRES.pallete];
+        CRGB c;
+        if (analyzer.getPulse() && CUR_PRES.pallete < 2) color += steps[CUR_PRES.pallete];    // скачок громкости
+        else if (CUR_PRES.pallete == 2) color += steps[CUR_PRES.pallete];
 
-        CRGB c = setWheel8(CUR_PRES.color, vol);
+        if (CUR_PRES.pallete == 3) c = CHSV(vol / 5, 255 - vol / 2, vol);                     // огненная палитра
+        else c = setWheel8(color, vol);
+
         for (int i = 0; i < cfg.numLeds; i++) {
           leds[i] = c;
         }
@@ -55,9 +59,11 @@ void effectsRountine() {
             leds[i] = leds[i + 1];
           }
         }
-        if (analyzer.getPulse()) CUR_PRES.color += steps[CUR_PRES.pallete];   // скачок громкости
-        if (CUR_PRES.pallete == 2) leds[MAX_CH] = CHSV(vol / 5, 255 - vol / 2, vol);   // огненная палитра
-        else leds[MAX_CH] = CHSV(CUR_PRES.color, 255, vol);
+        if (analyzer.getPulse() && CUR_PRES.pallete < 2) color += steps[CUR_PRES.pallete];   // скачок громкости
+        else if (CUR_PRES.pallete == 2) color += steps[CUR_PRES.pallete];
+
+        if (CUR_PRES.pallete == 3) leds[MAX_CH] = CHSV(vol / 5, 255 - vol / 2, vol);   // огненная палитра
+        else leds[MAX_CH] = CHSV(color, 255, vol);
       }
       break;
     case 3: // =================================== ГРАДИЕНТ ===================================
@@ -69,6 +75,13 @@ void effectsRountine() {
         }
         if (rainbowTmr.isReady()) {
           counter += CUR_PRES.speed / 5;
+        }
+      }
+      break;
+    case 4:
+      {
+        for (int i = 0; i < cfg.numLeds; i++) {
+          leds[i] = setWheel8(CUR_PRES.pallete, 255);
         }
       }
       break;

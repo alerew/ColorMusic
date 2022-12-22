@@ -9,7 +9,6 @@ struct Preset {
   byte pallete = 0;   // палитра
   byte scale = 100;   // масштаб
   byte speed = 30;    // скорость эфекта
-  byte color = 0;     // цвет
   byte flag = 0;
 };
 
@@ -31,6 +30,6 @@ bool connect = false;
 
 byte steps[3] = {151, 129, 1};
 
-char *effectNames = "Резкая смена цвета,Столбик громкости,Бегущие огни,Градиент";
+char *effectNames = "Резкая смена цвета,Столбик громкости,Бегущие огни,Градиент,Цвет";
 char *palleteNames = "Тепло,Лава,Вечеринка,Радуга,Павлин,Облака,Океан,Лес,Sound level";
-char *stepNames = "151,129,1 (Огненная палитра)";
+char *stepNames = "151,129,1,Огненная палитра";
